@@ -1,1 +1,2 @@
-bt NPROCS=16 CLASS=W
+bt W 16 
+

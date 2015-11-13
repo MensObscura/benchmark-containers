@@ -16,17 +16,17 @@ c
         logical  convertdouble
         parameter (convertdouble = .false.)
         character*11 compiletime
-        parameter (compiletime='06 Nov 2015')
+        parameter (compiletime='13 Nov 2015')
         character*3 npbversion
         parameter (npbversion='3.3')
         character*3 cs1
         parameter (cs1='f77')
         character*9 cs2
         parameter (cs2='$(MPIF77)')
-        character*22 cs3
-        parameter (cs3='-L/usr/local/lib -lmpi')
-        character*20 cs4
-        parameter (cs4='-I/usr/local/include')
+        character*16 cs3
+        parameter (cs3='-L/usr/lib -lmpi')
+        character*18 cs4
+        parameter (cs4='-I/usr/include/mpi')
         character*2 cs5
         parameter (cs5='-O')
         character*2 cs6

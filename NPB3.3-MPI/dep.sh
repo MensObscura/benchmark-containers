@@ -20,8 +20,11 @@ apt-get install gfortran
 
 apt-get install fort77
 
-========= ==========
+========= mpich ==========
 
+apt-get install mpich
+
+echo 'fin '
 
 ========= ==========
 
