@@ -5,14 +5,19 @@ c  This file is generated automatically by the setparams utility.
 c  It sets the number of processors and the class of the NPB
 c  in this directory. Do not modify it by hand.
 c  
-        integer maxcells, problem_size, niter_default
-        parameter (maxcells=4, problem_size=1020, niter_default=250)
-        double precision dt_default
-        parameter (dt_default = 0.4d-5)
-        integer wr_default
-        parameter (wr_default = 5)
-        integer iotype
-        parameter (iotype = 0)
+        integer            na, nonzer, niter
+        double precision   shift, rcond
+        parameter(  na=9000000,
+     >              nonzer=26,
+     >              niter=100,
+     >              shift=1.5d3,
+     >              rcond=1.0d-1 )
+
+c number of nodes for which this version is compiled
+        integer    nnodes_compiled
+        parameter( nnodes_compiled = 16)
+        integer    num_proc_cols, num_proc_rows
+        parameter( num_proc_cols=4, num_proc_rows=4 )
         logical  convertdouble
         parameter (convertdouble = .false.)
         character*11 compiletime

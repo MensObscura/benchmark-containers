@@ -6,13 +6,9 @@ c  It sets the number of processors and the class of the NPB
 c  in this directory. Do not modify it by hand.
 c  
         integer maxcells, problem_size, niter_default
-        parameter (maxcells=4, problem_size=1020, niter_default=250)
+        parameter (maxcells=4, problem_size=1020, niter_default=500)
         double precision dt_default
-        parameter (dt_default = 0.4d-5)
-        integer wr_default
-        parameter (wr_default = 5)
-        integer iotype
-        parameter (iotype = 0)
+        parameter (dt_default = 0.0001d0)
         logical  convertdouble
         parameter (convertdouble = .false.)
         character*11 compiletime
