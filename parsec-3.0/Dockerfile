@@ -44,7 +44,7 @@ RUN rm -rf pkgs/netapps pkgs/libs/uptcpip
 
 #Lancement de la compilation de Parsec
 RUN sh /home/parsec-3.0/getCompilConf.sh &&\
-	 bin/parsecmgmt -a build -p canneal
+	sh build.sh
 
 
 ENV PATH $PATH:bin/
