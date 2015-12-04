@@ -26,7 +26,7 @@ c number of iterations and how often to print the norm
         logical  convertdouble
         parameter (convertdouble = .false.)
         character*11 compiletime
-        parameter (compiletime='27 Nov 2015')
+        parameter (compiletime='04 Dec 2015')
         character*3 npbversion
         parameter (npbversion='3.3')
         character*6 cs1
@@ -37,8 +37,8 @@ c number of iterations and how often to print the norm
         parameter (cs3='-L/usr/lib -lmpi')
         character*18 cs4
         parameter (cs4='-I/usr/include/mpi')
-        character*2 cs5
-        parameter (cs5='-O')
+        character*38 cs5
+        parameter (cs5='-O -fdefault-integer-8 -mcmodel=medium')
         character*2 cs6
         parameter (cs6='-O')
         character*6 cs7

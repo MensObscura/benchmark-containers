@@ -46,7 +46,7 @@ FMPI_INC = -I/usr/include/mpi
 #---------------------------------------------------------------------------
 # Global *compile time* flags for Fortran programs
 #---------------------------------------------------------------------------
-FFLAGS	= -O
+FFLAGS	= -O -fdefault-integer-8 -mcmodel=medium
 
 #---------------------------------------------------------------------------
 # Global *link time* flags. Flags for increasing maximum executable 
@@ -92,7 +92,7 @@ CMPI_INC = -I/usr/include/mpi
 #---------------------------------------------------------------------------
 # Global *compile time* flags for C programs
 #---------------------------------------------------------------------------
-CFLAGS	= -O
+CFLAGS	= -O -mcmodel=medium
 
 #---------------------------------------------------------------------------
 # Global *link time* flags. Flags for increasing maximum executable 
