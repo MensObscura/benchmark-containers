@@ -36,3 +36,66 @@
              :+-`         `.----------------------------------..`                                   
              ``              ```.------------------------..``                                       
                                    ````............````                                     
+                                   
+                                   
+                                  
+======welcome to the Nasa platform Benchmark, MPI version=====
+
+
+To run this docker you must follow these templates.
+
+Bench : bt 
+	data:(inputbt.data)
+	CLASSES : S W A B C D E
+	NBPROC : 1 4 9 16 
+	CMD :-np [NBPROC] [BENCH.CLASS.NBPROC]
+	
+Bench : cg
+	CLASSES : S W A B C D E
+	NBPROC : 1 2 4 8 16
+	CMD :-np [NBPROC] [BENCH.CLASS.NBPROC]
+	
+Bench : dt 
+	CLASSES : S W A B 
+	NBPROC : -
+	OPTION : BH SH WH 
+	CMD :-np [NBPROC] [BENCH.CLASS] [OPTION]
+	
+Bench : ep
+	CLASSES : S W A B C D E
+	NBPROC : 1 2 4 8 16
+	CMD :-np [NBPROC] [BENCH.CLASS.NBPROC]	
+	
+Bench : ep
+	CLASSES : S W A B C D E
+	NBPROC : 1 2 4 8 16
+	CMD :-np [NBPROC] [BENCH.CLASS.NBPROC]	
+	
+Bench : ft 
+	data:(inputft.data)
+	CLASSES : S W A B C D E
+	NBPROC : 1 2 4 8 16
+	CMD :-np [NBPROC] [BENCH.CLASS.NBPROC]	
+	
+Bench : is
+	CLASSES : S W A B C D 
+	NBPROC : 1 2 4 8 16, for S W A B C ,and only, 4 8 16, for class D
+	CMD :-np [NBPROC] [BENCH.CLASS.NBPROC]	
+	
+Bench : lu 
+	data:(inputlu.data)
+	CLASSES : S W A B C D E
+	NBPROC : 1 2 4 8 16
+	CMD :-np [NBPROC] [BENCH.CLASS.NBPROC]	
+	
+Bench : mg 
+	data:(mg.input)
+	CLASSES : S W A B C D E
+	NBPROC : 1 2 4 8 16
+	CMD :-np [NBPROC] [BENCH.CLASS.NBPROC]
+	
+Bench : sp 
+        data:(inputsp.data)
+	CLASSES : S W A B C D E
+	NBPROC : 1 4 9 16
+	CMD :-np [NBPROC] [BENCH.CLASS.NBPROC]	

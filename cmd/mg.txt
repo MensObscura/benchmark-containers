@@ -1,0 +1,6 @@
+	
+Bench : mg 
+	data:(mg.input)
+	CLASSES : S W A B C D E
+	NBPROC : 1 2 4 8 16
+	CMD :-np [NBPROC] [BENCH.CLASS.NBPROC]

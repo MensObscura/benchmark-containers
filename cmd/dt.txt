@@ -1,0 +1,6 @@
+	
+Bench : dt 
+	CLASSES : S W A B 
+	NBPROC : -
+	OPTION : BH SH WH 
+	CMD :-np [NBPROC] [BENCH.CLASS] [OPTION]
