@@ -1,13 +1,17 @@
+#The NBP Benchmark will run on ubuntu
 FROM ubuntu:latest
-ENTRYPOINT ["mpirun"]
-CMD cat nasa.txt
 
-CMD echo "========== make/gcc/g++/gfortran/fort77/mpich =========="
 
-COPY NPB3.3-MPI /NPB3.3-MPI
+#Get the NPB from my place
+COPY NPB3.3-MPI /Bench/NPB3.3-MPI
 
-ENV PATH /usr/bin/:/NPB3.3-MPI/bin:$PATH
+#file with help inside
+COPY cmd /Bench/cmd/
 
+#To run mpirun,have command from the container and have the binary we have to set the PATH
+ENV PATH /usr/bin/:/Bench/NPB3.3-MPI/bin:$PATH
+
+#so we could install all dependencies, and make it
 RUN apt-get update && apt-get install -y\
 	make\
 	gcc\
@@ -15,11 +19,15 @@ RUN apt-get update && apt-get install -y\
 	gfortran\
 	fort77\
 	mpich &&\
-	cd NPB3.3-MPI &&\
+	cd /Bench/NPB3.3-MPI &&\
 	make suite
 
-CMD echo "========= fin ========="
+#The entry point is the command mpirun, so the arguments will be "-np [NBPROC] [BENCH_EXEC]"
+ENTRYPOINT ["./Bench/cmd/run.sh"]
 
-CMD echo "======welcome to the Nasa platform Benchmark, MPI version====="
+RUN echo "========= fin ========="
+
+
+RUN cat /Bench/cmd/nasa.txt
 
 

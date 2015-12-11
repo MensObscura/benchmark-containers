@@ -1,0 +1,5 @@
+	
+Bench : is
+	CLASSES : S W A B C D 
+	NBPROC : 1 2 4 8 16, for S W A B C ,and only, 4 8 16, for class D
+	CMD :-np [NBPROC] [BENCH.CLASS.NBPROC]	

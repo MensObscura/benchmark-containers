@@ -8,7 +8,7 @@
 #define COMPILETIME "04 Dec 2015"
 #define NPBVERSION "3.3"
 #define MPICC "cc"
-#define CFLAGS "-O -mcmodel=medium"
+#define CFLAGS "-O -mcmodel=large"
 #define CLINK "$(MPICC)"
 #define CLINKFLAGS "-O"
 #define CMPI_LIB "-L/usr/lib -lmpi"

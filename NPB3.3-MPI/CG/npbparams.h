@@ -32,8 +32,8 @@ c number of nodes for which this version is compiled
         parameter (cs3='-L/usr/lib -lmpi')
         character*18 cs4
         parameter (cs4='-I/usr/include/mpi')
-        character*38 cs5
-        parameter (cs5='-O -fdefault-integer-8 -mcmodel=medium')
+        character*37 cs5
+        parameter (cs5='-O -fdefault-integer-8 -mcmodel=large')
         character*2 cs6
         parameter (cs6='-O')
         character*6 cs7

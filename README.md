@@ -3,9 +3,10 @@ A repository of benchmarks packaged as Docker containers
 
 
 
-Currently only 202 benchmark pass the compilation on 301.
+Currently only 245 benchmark pass the compilation on my computer on 263.
+However the 263 bench pass the compilation on docker.
 
-But you can try to run one of them.
+You can try to run one of them.
 
 
 Build
@@ -31,7 +32,7 @@ benchmark-name.class.nbproc
 Example : 
 
 ```
-bt.S.16
+bt.S.1
 ```
 
 The to run the de container just type :
@@ -42,5 +43,13 @@ docker run -t your_docker_name/contener_name -np [NBPROC] [BENCHMARK]
 Example : 
 
 ```
-docker run -t rosacroc/mpinpb -np 16 bt.S.16
+docker run -t rosacroc/mpinpb -np 1 bt.S.1
 ```
+
+Problem
+=======
+
+Currently it remains some problem when few bench are executed.
+Especially for class E or S.
+
+
