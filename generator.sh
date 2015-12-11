@@ -1,3 +1,4 @@
+#!/bin/sh
 echo "==================Ecriture suite def=================="
 #configuration
 class=(S W A B C D E)
@@ -19,7 +20,7 @@ do
 	if [  "${bench[$b]}" = "bt" ] || [ "${bench[$b]}" = "sp"  ]  
 	then
 	   #Square proc loop
-	   for (( p=1; p<=$squareProc; p++ ))
+	   for (( p=1; p<= $squareProc; p++ ))
      	   do
        	   	
 		echo "${bench[$b]} ${class[$c]} $(($p * $p))" | tee -a suite.def
