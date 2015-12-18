@@ -25,11 +25,9 @@ RUN wget -nv http://192.168.0.11:8888/Docker/NU-MineBench-3.0.1.tar.gz && \
 WORKDIR /home/NU-MineBench-3.0.1
 
 #Lancement de la compilation de Parsec
-RUN sh 	sh build.sh
+RUN sh build.sh
 
 
-#Definition du comportement par default au lancement du container
-ENTRYPOINT ["./build.sh"]
 
 #Sauvegarde pour le devellopement
 #10.201.1.167
