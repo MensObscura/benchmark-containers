@@ -1,6 +1,6 @@
 	
-Bench : mg 
-	data:(mg.input)
+Bench : ft 
+	data:(inputft.data)
 	CLASSES : S W A B C D E
-	NBPROC : 1 2 4 8 16
+	NBPROC : 1 2 4 8 16 ... (pow 2)
 	CMD :-np [NBPROC] [BENCH.CLASS.NBPROC]

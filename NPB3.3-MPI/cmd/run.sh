@@ -51,7 +51,7 @@ fi
 
 if [ "$1" = "--count" ] || [ "$1" = "-c" ];
 	then
-		ls /Bench/NPB3.3-MPI/bin/ | wc -l
+		ls /Bench/bin/ | wc -l
 fi
 
 

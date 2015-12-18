@@ -3,9 +3,16 @@ echo "==================Ecriture suite def=================="
 #configuration
 class=(S W A B C D E)
 bench=(bt cg dt ep ft is lu mg sp)
-proc=16
+proc=$1
+
+
+
+if [[ ! -n ${proc//[0-9]/} ]] && [ $proc != "" ] 
+then
+
 #limit for bench using square nb prc.
-squareProc=`echo 'scale=0;sqrt(16)' | bc`
+cmdsub="scale=0;sqrt($proc)"
+squareProc=`echo $cmdsub | bc`     
 
 #bench loop 
 for (( b=0; b<${#bench[*]}; b++ ))
@@ -19,11 +26,16 @@ do
 	 	 
 	if [  "${bench[$b]}" = "bt" ] || [ "${bench[$b]}" = "sp"  ]  
 	then
+		
 	   #Square proc loop
 	   for (( p=1; p<= $squareProc; p++ ))
      	   do
-       	   	
-		echo "${bench[$b]} ${class[$c]} $(($p * $p))" | tee -a suite.def
+       	   	if [ ! "${class[$c]}" = "S" ] || [ $p -le 4 ] 
+       	   	then
+			echo "${bench[$b]} ${class[$c]} $(($p * $p))" | tee -a suite.def
+		else
+			echo "=== Class S cannot accept more than 16 proc, for class bt and sp ==="
+		fi
            done
 	else		
 	   # Pow 2 proc loop
@@ -50,3 +62,7 @@ do
 	fi
      done 
 done  
+
+else
+    echo "$proc is not an integer, PROC_NB must be an integer."
+fi

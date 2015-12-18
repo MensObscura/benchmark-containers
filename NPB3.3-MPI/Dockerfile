@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y\
 	mkdir /Bench &&\
 	mv  NPB3.3.1/NPB3.3-MPI /Bench/. &&\
 	rm -rf NPB3.3.1
+
 	
 
 #file with help inside
@@ -23,9 +24,10 @@ COPY make.def /Bench/NPB3.3-MPI/config/make.def
 
 
 #To run mpirun,have command from the container and have the binary we have to set the PATH
-ENV PATH /usr/bin/:/Bench/NPB3.3-MPI/bin:$PATH
+ENV PATH /usr/bin/:/Bench/bin:$PATH
 
 #so we could install all dependencies, and make it
+ARG PROC_NB
 RUN apt-get update && apt-get install -y\
 	make\
 	gcc\
@@ -34,9 +36,11 @@ RUN apt-get update && apt-get install -y\
 	fort77\
 	mpich &&\
 	cd /Bench/NPB3.3-MPI/config &&\
-	bash generator.sh &&\
+	bash generator.sh $PROC_NB &&\
 	cd .. &&\
-	make suite
+	make suite &&\
+	mv bin /Bench/. &&\
+	rm -rf NPB3.3-MPI
 
 #The entry point is the command mpirun, so the arguments will be "-np [NBPROC] [BENCH_EXEC]"
 ENTRYPOINT ["./Bench/cmd/run.sh"]
