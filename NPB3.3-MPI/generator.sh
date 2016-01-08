@@ -1,5 +1,4 @@
 #!/bin/sh
-echo "==================Ecriture suite def=================="
 #configuration
 class=(S W A B C D E)
 bench=(bt cg dt ep ft is lu mg sp)
