@@ -4,54 +4,54 @@ if [ "$1" = "--help" ];
 	then
 	if [ "$2" = "-bt" ];
 	then
-	 cat /Bench/cmd/bt.txt
+	 cat /home/cmd/bt.txt
 	fi
 	if [ "$2" = "-cg" ];
 	then
-	 cat /Bench/cmd/cg.txt
+	 cat /home/cmd/cg.txt
 	fi
 	if [ "$2" = "-dt" ];
 	then
-	 cat /Bench/cmd/dt.txt
+	 cat /home/cmd/dt.txt
 	fi
 	if [ "$2" = "-ep" ];
 	then
-	 cat /Bench/cmd/ep.txt
+	 cat /home/cmd/ep.txt
 	fi
 	if [ "$2" = "-ft" ];
 	then
-	 cat /Bench/cmd/ft.txt
+	 cat /home/cmd/ft.txt
 	fi
 	if [ "$2" = "-is" ];
 	then
-	 cat /Bench/cmd/is.txt
+	 cat /home/cmd/is.txt
 	fi
 	if [ "$2" = "-lu" ];
 	then
-	 cat /Bench/cmd/lu.txt
+	 cat /home/cmd/lu.txt
 	fi
 	if [ "$2" = "-mg" ];
 	then
-	 cat /Bench/cmd/mg.txt
+	 cat /home/cmd/mg.txt
 	fi
 	if [ "$2" = "-sp" ];
 	then
-	 cat /Bench/cmd/sp.txt
+	 cat /home/cmd/sp.txt
 	fi
 	if [ ! -z "$2" ] && [ "$2" != "-bt" ] && [ "$2" != "-cg" ] && [ "$2" != "-dt" ] && [ "$2" != "-ep" ] && [ "$2" != "-ft" ] && [ "$2" != "-is" ] && [ "$2" != "-lu" ] && [ "$2" != "-mg" ] && [ "$2" != "-sp" ];
 	then
-	   cat /Bench/cmd/helpusage.txt
+	   cat /home/cmd/helpusage.txt
 	fi	
 	if [ "$2" = "" ];
 	then
-	   cat /Bench/cmd/help.txt
+	   cat /home/cmd/help.txt
 	fi
 		
 fi
 
 if [ "$1" = "--count" ] || [ "$1" = "-c" ];
 	then
-		ls /Bench/bin/ | wc -l
+		ls /home/bin/ | wc -l
 fi
 
 
@@ -62,7 +62,7 @@ fi
 
 if [ "$1" = "" ];
 then
-	cat /Bench/cmd/nasa.txt
+	cat /home/cmd/nasa.txt
 
 fi
 
