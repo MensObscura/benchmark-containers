@@ -14,7 +14,7 @@
 # For CG, EP, FT, MG, LU, SP and BT, which are in Fortran, the following must 
 # be defined:
 #
-# MPIF77     - Fortran compiler
+# GFORTRAN    - Fortran compiler
 # FFLAGS     - Fortran compilation arguments
 # FMPI_INC   - any -I arguments required for compiling MPI/Fortran 
 # FLINK      - Fortran linker
