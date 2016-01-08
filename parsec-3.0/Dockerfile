@@ -1,62 +1,46 @@
 FROM debian:latest
-MAINTAINER Ouamar Sais
 
-#Définition du repertoire courrant à /tmp
-WORKDIR /tmp 
+RUN mkdir /home/parsec-3.0
 
+# Copy scripts for getting build configurations, getting patches, building parsec and running parsec  
+COPY getCompilConf.sh build.sh run.sh pod.patch uptcpip.patch netdedup-run.patch netdedup-runconf.patch /home/parsec-3.0/
 
-#Installation des librairies nécéssaires à la compilation de Parsec
-RUN apt-get update && apt-get install -y \
-	wget\
-	xorg-dev\
-	make\
-	patch\
-	g++ \
-	m4\
-	gettext\
-	libtbb-dev
-	
-
-#Téléchargement, décompression et suppression de l'archive de Parsec
-RUN wget -nv http://parsec.cs.princeton.edu/download/3.0/parsec-3.0.tar.gz && \
-	tar -xvf /tmp/parsec-3.0.tar.gz && \
-	mv /tmp/parsec-3.0 /home/ && \
-	rm /tmp/parsec-3.0.tar.gz
-
-
-
-#Copie du patch pour la documentation ssl dans son dossier src 
-COPY pod.patch /home/parsec-3.0/pkgs/libs/ssl/src/
-
-#Application du patch pour ssl
-RUN cd /home/parsec-3.0/pkgs/libs/ssl/src/ && \
-	patch -p1 < pod.patch
-
-
-#Copie du script bash de recuperation des configurations de compilation, de build des benchmarks, d'execution et du fichier texte d'aide
-COPY getCompilConf.sh build.sh run.sh help.txt /home/parsec-3.0/
-
+# Install needed libraries for Parsec build, download, untar, compile and clean Parsec folder
+RUN apt-get clean && apt-get update && apt-get install -y \
+        g++ \
+        gettext\
+        libtbb-dev\
+        m4\
+        make\
+        patch\
+        wget\
+        xorg-dev\
+&& apt-get clean \
+&& rm -rf /var/lib/apt/lists/* \
+&& wget -nv -P /home/parsec-3.0 http://parsec.cs.princeton.edu/download/3.0/parsec-3.0.tar.gz \  
+&& tar -C /home/ -xvf /home/parsec-3.0/parsec-3.0.tar.gz \
+&& rm /home/parsec-3.0/parsec-3.0.tar.gz \
+&& cd /home/parsec-3.0 \
+&& patch -p1 < pod.patch \
+&& patch -p1 < uptcpip.patch \
+&& patch -p1 < netdedup-run.patch \
+&& patch -p1 < netdedup-runconf.patch \
+&& find /home/parsec-3.0/ -name \*.tar -exec xz -9 \{\} \; \
+&& sh /home/parsec-3.0/getCompilConf.sh \
+&& sh /home/parsec-3.0/build.sh \
+&& /home/parsec-3.0/bin/parsecmgmt -a fullclean -p all \
+&& cd /home/parsec-3.0 \
+&& rm -rf build.sh getCompilConf.sh compilConf.txt pod.patch uptcpip.patch log man toolkit \
+&& rm -rf pkgs/libs pkgs/tools \
+&& rm -rf ext/splash2/README.SPLASH2 ext/splash2/SPLASH2.POSTING ext/splash2/null_macros \
+&& find 'pkgs' -depth -mindepth 3 -maxdepth 3 -not -name inputs -not -name inst -not -name parsec -exec rm -rf \{\} \; \
+&& find 'ext' -depth -mindepth 4 -maxdepth 4 -not -name inputs -not -name inst -not -name parsec -exec rm -rf \{\} \; \
+# Create missing symbolic links for network packages
+&& cd /home/parsec-3.0/pkgs/netapps/netdedup && ln -sf ../../kernels/dedup/inputs \
+&& cd /home/parsec-3.0/pkgs/netapps/netferret && ln -sf ../../apps/ferret/inputs
 
 WORKDIR /home/parsec-3.0
 
-#Suppression des benchmarks qui ne compilent pas et lancement du script de compilation
-RUN rm -rf pkgs/netapps pkgs/libs/uptcpip 
-
-#Lancement de la compilation de Parsec
-RUN sh /home/parsec-3.0/getCompilConf.sh &&\
-	sh build.sh
-
-
-ENV PATH $PATH:bin/
-
-#Definition du comportement par default au lancement du container
+# Define default behavior at container launch
 ENTRYPOINT ["./run.sh"]
-CMD ["help"]
-
-#Sauvegarde pour le devellopement
-#10.201.1.167
-#http://192.168.0.11:8888/Docker/parsec-3.0.tar.gz
-
-
-
 

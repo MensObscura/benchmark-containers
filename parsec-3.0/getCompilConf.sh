@@ -1,60 +1,51 @@
 #!/bin/sh  
 
-#bin/parsecmgmt -a build -p all
+(
+  #PARSEC
+  cd pkgs
+  pkgs=$(ls)
+
+  for pkg in $pkgs
+  do
+    cd $pkg
+	
+    benchs=$(ls) 
+
+    #For each benchmark we write available compile configurations in a file
+    for bench in $benchs
+    do
+      echo $bench : $(ls $bench/parsec/ | grep -v "icc" | grep '.bldconf$' | cut -d'.' -f 1) >> ../../compilConf.txt
+    done
+	
+    cd ..
+  done 
+
+  cd ..
+
+  #SPLASH2/SPLASH2X
+  cd ext/
+
+  splashdirs=$(ls)
 
 
-#PARSEC
+  for splashdir in $splashdirs
+  do
+    cd $splashdir
 
-#On entre dans le repertoire contenant les packages de benchmarks 
-cd pkgs
+    for pkg in $(ls -d */ | grep -v "null_macros")
+    do
+      benchs=$(ls $pkg/) 
 
-#On stocke les differents packages
-pkgs=$(ls)
+      #For each benchmark we write available compile configurations in a file
+      for bench in $benchs
+      do
+        echo $splashdir.$bench : $(ls $pkg/$bench/parsec/ | grep -v "icc" | grep '.bldconf$' | cut -d'.' -f 1) >> ../../compilConf.txt
+      done
 
-for pkg in $pkgs
-do
-	#On entre dans le repertoire du package courrant
-	cd $pkg
+    done
 
-	#On stocke les benchmarks de ce package
-	benchs=$(ls) 
+  cd ..
 
-	#Pour chaque benchmark on stocke ses configurations de compilation
-	for bench in $benchs
-	do
-		echo $bench : $(ls $bench/parsec/ | grep -v "icc" | grep '.bldconf$' | cut -d'.' -f 1) >> ../../compilConf.txt
-	done
+  done
+)
 
-	cd ..
-
-done 
-
-#Retour à la racine de parsec
-cd ..
-
-#SPLASH2/SPLASH2X
-cd ext/
-
-splashdirs=$(ls)
-
-
-for splashdir in $splashdirs
-do
-	cd $splashdir
-
-	for pkg in $(ls -d */ | grep -v "null_macros")
-	do
-
-		benchs=$(ls $pkg/) 
-
-		#Pour chaque benchmark on stocke ses configurations de compilation
-		for bench in $benchs
-		do
-			echo $splashdir.$bench : $(ls $pkg/$bench/parsec/ | grep -v "icc" | grep '.bldconf$' | cut -d'.' -f 1) >> ../../compilConf.txt
-		done
-
-	done
-
-	cd ..
-
-done
