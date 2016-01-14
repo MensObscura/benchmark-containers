@@ -1,32 +1,21 @@
 FROM debian:latest
 MAINTAINER Ouamar Sais
 
-#Définition du repertoire courrant à /tmp
-WORKDIR /tmp 
+RUN mkdir /home/NU-MineBench-3.0.1
 
 
 #Installation des librairies nécéssaires à la compilation de Parsec
-RUN apt-get update && apt-get install -y \
-	wget\
-	make\
+RUN apt-get clean && apt-get update && apt-get install -y \
 	g++ \
-	
-
-#Téléchargement, décompression et suppression de l'archive de Parsec
-RUN wget -nv http://192.168.0.11:8888/Docker/NU-MineBench-3.0.1.tar.gz && \
-	tar -xvf /tmp/NU-MineBench-3.0.1.tar.gz && \
-	mv /tmp/NU-MineBench-3.0.1 /home/ && \
-	rm /tmp/NU-MineBench-3.0.1
-
-
-
-
-
-WORKDIR /home/NU-MineBench-3.0.1
+	make \
+	wget \
+&& apt-get clean \
+&& rm -rf /var/lib/apt/lists/* \
+&& wget -nv -P /home/NU-MineBench-3.0.1 http://192.168.0.11:8888/Docker/NU-MineBench-3.0.1.tar.gz \
+&& tar -C /home/ -xvzf /home/NU-MineBench-3.0.1/parsec-3.0.tar.gz 
 
 #Lancement de la compilation de Parsec
-RUN sh build.sh
-
+##RUN sh build.sh
 
 
 #Sauvegarde pour le devellopement

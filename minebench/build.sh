@@ -9,7 +9,7 @@ do
 	cd pkg
 
 	#Compile
-	make
+	#make
 
 	cd ..
 
