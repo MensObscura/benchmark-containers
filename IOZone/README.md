@@ -12,5 +12,5 @@ The first image can be downloaded with `docker pull spirals/iozone3_434:source` 
 
 ##Available benchmarks:
 
-- **linux-AMD64 (64bit)  **        : OK
-- **linux-arm (32bit) **           : OK
+- **linux-AMD64 (64bit)**        : OK
+- **linux-arm (32bit)**           : OK
