@@ -1,0 +1,10 @@
+--- a/SEMPHY/programs/rate4site/rate4siteOptions.cpp	2014-03-14 06:20:01.000000000 +0100
++++ a/SEMPHY/programs/rate4site/rate4siteOptions.cpp	2016-02-05 10:54:12.000000000 +0100
+@@ -3,6 +3,7 @@
+ #include "rate4siteOptions.h"
+ #include "errorMsg.h"
+ #include <iostream>
++#include <getopt.h>
+ using namespace std;
+ 
+ rate4siteOptions::rate4siteOptions(int& argc, char *argv[]):
